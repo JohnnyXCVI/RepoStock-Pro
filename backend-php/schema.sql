@@ -345,3 +345,24 @@ CREATE TABLE IF NOT EXISTS `incidencias` (
   FOREIGN KEY (`motivo_incidencia_id`) REFERENCES `motivos_incidencia`(`id`),
   FOREIGN KEY (`producto_id`) REFERENCES `productos`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB;
+
+-- -------------------------------------------------------------
+-- 10. USUARIOS Y CONTROL DE ACCESO (HASH BCRYPT)
+-- -------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id_usuario` INT AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(50) NOT NULL UNIQUE,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `nombre_completo` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(120) NULL,
+  `rol` ENUM('ADMIN', 'SUPERVISOR', 'REPOSITOR') NOT NULL DEFAULT 'ADMIN',
+  `id_repositor` INT NULL,
+  `estado` TINYINT(1) NOT NULL DEFAULT 1,
+  `ultimo_acceso` DATETIME NULL,
+  `fecha_creacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `fecha_actualizacion` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  KEY `fk_usuarios_repositor` (`id_repositor`),
+  CONSTRAINT `fk_usuarios_repositor` FOREIGN KEY (`id_repositor`) REFERENCES `repositores` (`id_repositor`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+

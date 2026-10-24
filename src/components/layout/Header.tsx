@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, Store, Truck, AlertCircle } from 'lucide-react';
+import { Menu, Store, Truck, AlertCircle, LogOut } from 'lucide-react';
 import { MainNavSection } from './Sidebar';
 import { fetchDashboardData } from '../../services/dashboardService';
+import { type AuthUser } from '../../services/authService';
 
 interface HeaderProps {
   currentSection: MainNavSection;
   subTabLabel?: string;
   onOpenMobile: () => void;
   onNavigate?: (section: MainNavSection, subTab?: string) => void;
+  currentUser?: AuthUser | null;
+  onLogout?: () => void;
   // Props opcionales para compatibilidad
   onNewRecord?: () => void;
   onResetData?: () => void;
@@ -21,6 +24,8 @@ export const Header: React.FC<HeaderProps> = ({
   subTabLabel,
   onOpenMobile,
   onNavigate,
+  currentUser,
+  onLogout,
   pdvsActivos: propPdvsActivos,
   repositoresEnRuta: propRepositoresEnRuta
 }) => {
@@ -173,12 +178,44 @@ export const Header: React.FC<HeaderProps> = ({
         )}
       </div>
 
-      {/* Zone 3: Sin botones de refresh ni Nuevo Registro (Tarea 1) */}
+      {/* Zone 3: Perfil de Usuario y Cerrar Sesión */}
       <div className="flex items-center gap-2 shrink-0">
-        <div className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-500">
+        <div className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 border border-slate-200 rounded-lg text-[11px] font-mono text-slate-500">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>MySQL Online</span>
         </div>
+
+        {currentUser && (
+          <div className="flex items-center gap-2 pl-2 border-l border-slate-200">
+            <div className="hidden sm:flex flex-col text-right">
+              <span className="text-xs font-semibold text-slate-800 leading-tight">
+                {currentUser.nombreCompleto || currentUser.username}
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">
+                Rol: <strong className="text-blue-600">{currentUser.rol}</strong>
+              </span>
+            </div>
+
+            <div
+              className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold text-xs flex items-center justify-center shadow-xs"
+              title={`${currentUser.nombreCompleto} (${currentUser.username})`}
+            >
+              {currentUser.username.substring(0, 2).toUpperCase()}
+            </div>
+
+            {onLogout && (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors ml-1"
+                title="Cerrar sesión"
+                aria-label="Cerrar sesión"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );
