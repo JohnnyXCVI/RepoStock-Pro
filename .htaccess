@@ -1,0 +1,9 @@
+# Sirve index.php como entrada principal de la aplicacion.
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si se solicita index.html directamente, usar el index.php compilado.
+    RewriteRule ^index\.html$ index.php [L]
+</IfModule>

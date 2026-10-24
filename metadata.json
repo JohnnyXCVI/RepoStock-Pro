@@ -1,0 +1,6 @@
+{
+  "name": "RepoStock Pro - Gestión de Reposición y Mercaderismo",
+  "description": "Sistema integral de gestión de reposición de productos, rutas, visitas, lotes y vencimientos para supermercados, farmacias, tiendas y almacenes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
