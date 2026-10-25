@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `estado_general` (
   `descripcion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_estado`),
   UNIQUE KEY `entidad` (`entidad`,`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla reposicion_productos.estado_general: ~19 rows (aproximadamente)
 DELETE FROM `estado_general`;
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `lotes_producto` (
   CONSTRAINT `lotes_producto_ibfk_2` FOREIGN KEY (`id_punto_venta`) REFERENCES `puntos_venta` (`id_punto_venta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla reposicion_productos.lotes_producto: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla reposicion_productos.lotes_producto: ~1 rows (aproximadamente)
 DELETE FROM `lotes_producto`;
 INSERT INTO `lotes_producto` (`id_lote`, `id_producto`, `id_punto_venta`, `numero_lote`, `fecha_ingreso`, `fecha_vencimiento`, `cantidad_deposito`, `cantidad_gondola`) VALUES
 	(4, 4, 3, 'LE-2026-001', '2026-10-23', '2026-11-22', 420.000, 80.000),
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `motivo_incidencia` (
   `estado` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_motivo`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla reposicion_productos.motivo_incidencia: ~10 rows (aproximadamente)
 DELETE FROM `motivo_incidencia`;
@@ -243,9 +243,9 @@ CREATE TABLE IF NOT EXISTS `prioridad` (
   PRIMARY KEY (`id_prioridad`),
   UNIQUE KEY `descripcion` (`descripcion`),
   UNIQUE KEY `nivel` (`nivel`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla reposicion_productos.prioridad: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla reposicion_productos.prioridad: ~5 rows (aproximadamente)
 DELETE FROM `prioridad`;
 INSERT INTO `prioridad` (`id_prioridad`, `descripcion`, `nivel`, `minutos_estimados`) VALUES
 	(1, 'Baja', 1, 20),
@@ -448,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `rutas` (
   CONSTRAINT `rutas_ibfk_2` FOREIGN KEY (`id_estado`) REFERENCES `estado_general` (`id_estado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla reposicion_productos.rutas: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla reposicion_productos.rutas: ~1 rows (aproximadamente)
 DELETE FROM `rutas`;
 INSERT INTO `rutas` (`id_ruta`, `fecha`, `id_repositor`, `hora_inicio_plan`, `hora_fin_plan`, `descripcion`, `id_estado`, `observacion`, `fecha_creacion`) VALUES
 	(5, '2026-10-26', 3, '08:00:00', '14:00:00', 'Circuito x', 1, 'Revisión de inventario de lácteos', '2026-10-23 15:46:34'),
@@ -460,9 +460,9 @@ CREATE TABLE IF NOT EXISTS `tipo_incidente` (
   `descripcion` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id_tipo_incidente`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
--- Volcando datos para la tabla reposicion_productos.tipo_incidente: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla reposicion_productos.tipo_incidente: ~9 rows (aproximadamente)
 DELETE FROM `tipo_incidente`;
 INSERT INTO `tipo_incidente` (`id_tipo_incidente`, `descripcion`) VALUES
 	(1, 'Vencimiento'),
@@ -481,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `tipo_punto_venta` (
   `estado` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_tipo_punto`),
   UNIQUE KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Volcando datos para la tabla reposicion_productos.tipo_punto_venta: ~6 rows (aproximadamente)
 DELETE FROM `tipo_punto_venta`;

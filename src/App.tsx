@@ -18,12 +18,8 @@ import { VisitasView } from './components/views/VisitasView';
 import { ReposicionesView } from './components/views/ReposicionesView';
 import { PedidosView } from './components/views/PedidosView';
 import { IncidenciasView } from './components/views/IncidenciasView';
-import { AuthService, type AuthUser } from './services/authService';
-import { LoginView } from './components/auth/LoginView';
 
 export default function App() {
-  // Authentication State
-  const [currentUser, setCurrentUser] = useState<AuthUser | null>(() => AuthService.getCurrentUser());
 
   // Navigation State
   const [currentSection, setCurrentSection] = useState<MainNavSection>('dashboard');
@@ -32,14 +28,7 @@ export default function App() {
   const [productosPreciosSubTab, setProductosPreciosSubTab] = useState<ProductosPreciosSubTab>('productos');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleLoginSuccess = (user: AuthUser) => {
-    setCurrentUser(user);
-  };
-
-  const handleLogout = () => {
-    AuthService.logout();
-    setCurrentUser(null);
-  };
+  // Authentication removed
 
   // Referential data still used by the demo modules (localStorage)
   const [motivos] = useState(StorageService.getMotivosIncidencia);
@@ -97,10 +86,7 @@ export default function App() {
   const openIncidentsCount = 0;
   const criticalLotesCount = lotes.filter((l) => l.estadoLote === 'Crítico (<7d)' || l.estadoLote === 'Vencido').length;
 
-  // Si no hay usuario autenticado, mostrar pantalla de inicio de sesión
-  if (!currentUser) {
-    return <LoginView onLoginSuccess={handleLoginSuccess} />;
-  }
+  // Autenticación eliminada - acceso directo
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
@@ -124,8 +110,6 @@ export default function App() {
           subTabLabel={getSubTabLabel()}
           onOpenMobile={() => setIsMobileMenuOpen(true)}
           onNavigate={handleNavigate}
-          currentUser={currentUser}
-          onLogout={handleLogout}
         />
 
         <main className="flex-1 p-4 lg:p-8 max-w-7xl w-full mx-auto">
