@@ -19,7 +19,6 @@ if (empty($path) || $path === 'index.php') {
         'app' => 'RepoStock Pro API (PHP/MySQL)',
         'version' => '1.0.0',
         'endpoints' => [
-            'POST /api/login.php' => 'Inicio de sesión con validación de hash BCRYPT',
             'GET /api/dashboard.php' => 'Métricas agregadas y widgets en tiempo real para el Resumen General',
             'GET /api/referenciales.php?tipo=...' => 'Gestión de tablas maestras referenciales',
             'GET,POST,PUT,DELETE /api/repositores.php' => 'Gestión del personal repositor',
