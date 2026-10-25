@@ -75,6 +75,13 @@ mysql -u root -p < backend-php/schema.sql
 
 Los endpoints quedan disponibles bajo `backend-php/api/`.
 
+## login/autenticación
+
+El sistema cuenta con una autenticacion para el usuario para mayor seguridad y protección de los datos
+Usuario inicial para loguearse es:
+- Usuario: admin
+- Contraseña: [admin123]
+
 ## El problema
 Para entender el problema cada repositor o un equipo de la misma, debe realizar una serie de tareas en los puntos de venta que visita, estas tareas pueden variar dependiendo del dia, la hora, la ruta de recorrido(intinerario), la cantidad de repositores asignados a cada ruta, etc. El objetivo del sistema es digitalizar y gestionar estas tareas, permitiendo a ellos realizar sus tareas de manera eficiente y a los gerentes tener una visión general del trabajo de los repositores.
 
